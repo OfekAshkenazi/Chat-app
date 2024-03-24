@@ -1,5 +1,6 @@
 import Converstions from "./Converstions";
 import SearchInput from "./SearchInput";
+import LogoutBtn from './LogoutBtn';
 
 export default function SideBar() {
     return (
@@ -10,7 +11,7 @@ export default function SideBar() {
             <div className="divider px-3"></div>
 
             <Converstions />
-            {/* <LogoutBtn /> */}
+            <LogoutBtn />
 
         </section>
     )
