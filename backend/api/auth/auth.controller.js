@@ -60,19 +60,19 @@ export async function login(req, res) {
         const { username, password } = req.body
         const user = await User.findOne({ username })
 
-        if(!user) {
-            return res.status(400).json({error: "Invaild username"})
+        if (!user) {
+            return res.status(400).json({ error: "Invaild username" })
         }
 
 
         const chackPassword = await bcrypt.compare(password, user?.password || "")
 
 
-        if(!chackPassword) {
-            return res.status(400).json({error: "Invaild password"})
+        if (!chackPassword) {
+            return res.status(400).json({ error: "Invaild password" })
         }
 
-        generateTokenAndSetCookie(user._id,res)
+        generateTokenAndSetCookie(user._id, res)
 
         res.status(200).json({
             _id: user._id,
@@ -87,8 +87,10 @@ export async function login(req, res) {
     }
 }
 
-export async function logout(req, res) {
+export function logout(req, res) {
     try {
+        res.cookie("jwt-token", "", { maxAge: 0 })
+        res.status(200).json({ message: "Logged out successfully" })
 
     } catch (error) {
         console.log("Error in logout controller", error.message)
