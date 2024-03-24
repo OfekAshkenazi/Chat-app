@@ -4,12 +4,14 @@
 
 
 body {
-    background:  url("/bg.png");
+    background: url("/bg.png");
     /* linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    font-family: sans-serif;
+    font-weight: 600;
 }
 
 
