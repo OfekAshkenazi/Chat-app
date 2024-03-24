@@ -1,11 +1,27 @@
-export function login(req,res) {
-    res.send("user function from the login")  
-} 
+export async function signup(req, res) {
+    try {
+        const { fullname, username, password, confirmPassword, gender } = req.body
+        if (password !== confirmPassword) {
+            return res.status(400).json({ error: "Passwords doesnt match" })
+        }
 
-export function logout(req,res) {
-    res.send("user function from the logout")
-} 
+        
+    } catch (error) {
 
-export function signup(req,res) {
-    res.send("user function from the signup")
+    }
+}
+export async function login(req, res) {
+    try {
+
+    } catch (error) {
+
+    }
+}
+
+export async function logout(req, res) {
+    try {
+
+    } catch (error) {
+
+    }
 } 
