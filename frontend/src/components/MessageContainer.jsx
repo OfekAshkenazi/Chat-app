@@ -12,9 +12,8 @@ export default function MessageContainer() {
             </header>
 
             <Messages />
+
             <MessageInput />
-
-
 
         </section>
     )
