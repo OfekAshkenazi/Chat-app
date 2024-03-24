@@ -48,6 +48,8 @@ export async function getMessage(req, res) {
 
         }).populate("messages")
 
+        if (!conversation) return res.staus(200).json([])
+
         res.status(200).json(conversation.messages)
 
     } catch (error) {
