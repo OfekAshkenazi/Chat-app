@@ -1,4 +1,5 @@
 import SideBar from "./SideBar";
+import MessageContainer from './MessageContainer';
 
 export default function Home() {
     return (
@@ -7,7 +8,7 @@ export default function Home() {
                        bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0"
         >
             <SideBar />
-            {/* <MessageContainer /> */}
+            <MessageContainer />
 
         </section>
     )
