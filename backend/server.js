@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 
 import authRoutes from "./api/auth/auth.routes.js"
 import messageRoutes from "./api/message/message.routes.js"
+import userRoutes from "./api/user/user.routes.js"
 
 import connect from "./services/db.service.js"
 
@@ -18,6 +19,7 @@ app.use(cookieParser())
 
 app.use("/api/auth",authRoutes)
 app.use("/api/messages",messageRoutes)
+app.use("/api/users",userRoutes)
 
 
 app.listen(PORT, () => {
