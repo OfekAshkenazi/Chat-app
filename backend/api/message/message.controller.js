@@ -24,11 +24,11 @@ export async function sendMessage(req, res) {
             message,
         })
 
-        if(newMessage) {
+        if (newMessage) {
             converstion.messages.push(newMessage._id)
         }
 
-        await Promise.all([converstion.save(),newMessage.save()])
+        await Promise.all([converstion.save(), newMessage.save()])
 
         res.status(201).json(newMessage)
 
@@ -38,6 +38,20 @@ export async function sendMessage(req, res) {
     }
 }
 
-export async function getMessage(req,res) {
-    
+export async function getMessage(req, res) {
+    try {
+        const { id: receiverId } = req.params
+        const senderId = req.user._id
+
+        const conversation = await Conversation.findOne({
+            participants: { $all: [senderId, receiverId] }
+
+        }).populate("messages")
+
+        res.status(200).json(conversation.messages)
+
+    } catch (error) {
+        console.log("Error in getMessage controller", error.message)
+        res.status(500).json({ error: "Internal server Error" })
+    }
 }
