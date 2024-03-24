@@ -1,5 +1,12 @@
-export default function SearchDefault() {
+export default function SearchInput() {
     return (
-        <h2>search input</h2>
+        <form className="flex item-center gap-2">
+            <input type="text" placeholder="Search..." className="input input-bordered rounded-full" />
+
+            <button type="submit" className="btn btn-circle bg-sky-500 text-white">
+                Icone
+            </button>
+
+        </form>
     )
 }
