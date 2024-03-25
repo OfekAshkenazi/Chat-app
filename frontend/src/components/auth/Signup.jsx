@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import GenderBox from "./GenderBox";
-import useSignup from './../../hooks/useSignUp';
+import useSignup from './../../hooks/useSignUp.js';
 
 export default function Signup() {
 

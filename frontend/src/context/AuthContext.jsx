@@ -8,9 +8,9 @@ export const useAuthContext = () => {
 
 export const AuthContextProvider = ({ children }) => {
     const STOARGE_KEY = "credentials"
-    const [loogedinUser, setLoogedinUser] = useState(JSON.parse(localStorage.getItem(STOARGE_KEY)) || null)
+    const [loggedinUser, setLoggedinUser] = useState(JSON.parse(localStorage.getItem(STOARGE_KEY)) || null)
 
-    return <AuthContext.Provider value={{ loogedinUser, setLoogedinUser }}>
+    return <AuthContext.Provider value={{ loggedinUser, setLoggedinUser }}>
         {children}
 
     </AuthContext.Provider>

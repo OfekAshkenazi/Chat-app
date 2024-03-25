@@ -6,7 +6,7 @@ import { useAuthContext } from "../context/AuthContext"
 const useSignup = () => {
     const STOARGE_KEY = "credentials"
     const [loading, setLoading] = useState(false)
-    const { setLoogedinUser } = useAuthContext()
+    const { setLoggedinUser } = useAuthContext()
 
     const signup = async ({ fullName, username, password, confirmPassword, gender }) => {
         const success = handleCredentialsErrors({ fullName, username, password, confirmPassword, gender })

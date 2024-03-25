@@ -7,17 +7,15 @@ import { Toaster } from "react-hot-toast"
 import { useAuthContext } from "./context/AuthContext";
 
 export default function App() {
-  const { loogedinUser } = useAuthContext()
-
-  console.log(loogedinUser)
+  const { loggedinUser } = useAuthContext()
 
   return (
     <main className="p-4 h-screen flex items-center justify-center">
 
       <Routes>
-        <Route path="/" element={loogedinUser ? < Home /> : <Navigate to="/login" />} />
-        <Route path="/login" element={loogedinUser ? <Navigate to="/" /> : <Login />} />
-        <Route path="/signup" element={loogedinUser ? <Navigate to="/" /> : <Signup />} />
+        <Route path="/" element={loggedinUser ? < Home /> : <Navigate to="/login" />} />
+        <Route path="/login" element={loggedinUser ? <Navigate to="/" /> : <Login />} />
+        <Route path="/signup" element={loggedinUser ? <Navigate to="/" /> : <Signup />} />
       </Routes>
       <Toaster />
 
