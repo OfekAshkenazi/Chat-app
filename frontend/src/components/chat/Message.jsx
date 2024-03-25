@@ -6,12 +6,11 @@ export default function Message({ message }) {
 
     const { loggedinUser } = useAuthContext()
     const { selectedConverstion } = useConverstion()
-    
+
     const fromMe = message.senderId === loggedinUser._id
     const chatClassName = fromMe ? 'chat-end' : 'chat-start'
     const profileImage = fromMe ? loggedinUser.image : selectedConverstion?.image
     const bubbleBgColor = fromMe ? 'bg-blue-500' : ''
-
 
     return (
         <section className={`chat ${chatClassName}`}>
