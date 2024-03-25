@@ -9,6 +9,9 @@ const useLogin = () => {
 
 
     const login = async (username, password) => {
+        const success = handleCredentialsErrors({ username, password })
+        if (!success) return
+
         setLoading(true)
 
         try {
@@ -18,7 +21,7 @@ const useLogin = () => {
                 body: JSON.stringify({ username, password })
             })
 
-            const data = res.json()
+            const data = await res.json()
 
             if (data.error) {
                 throw new Error(data.error)
@@ -40,3 +43,20 @@ const useLogin = () => {
 }
 
 export default useLogin
+
+function handleCredentialsErrors({ username, password }) {
+   
+    if (!username) {
+        toast.error('Please fill the user name field')
+        return false
+    }
+    if (!password) {
+        toast.error('Please fill the password field')
+        return false
+    }
+    if (password.length < 4) {
+        toast.error('Passwords need to be at least 4 ')
+        return false
+    }
+    return true
+}

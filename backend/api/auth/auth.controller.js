@@ -59,15 +59,11 @@ export async function login(req, res) {
     try {
         const { username, password } = req.body
         const user = await User.findOne({ username })
+        const chackPassword = await bcrypt.compare(password, user?.password || "")
 
         if (!user) {
             return res.status(400).json({ error: "Invaild username" })
         }
-
-
-        const chackPassword = await bcrypt.compare(password, user?.password || "")
-
-
         if (!chackPassword) {
             return res.status(400).json({ error: "Invaild password" })
         }
@@ -89,7 +85,7 @@ export async function login(req, res) {
 
 export function logout(req, res) {
     try {
-        res.cookie("jwt-token", "", { maxAge: 0 })
+        res.cookie("jwt", "", { maxAge: 0 })
         res.status(200).json({ message: "Logged out successfully" })
 
     } catch (error) {
