@@ -8,8 +8,8 @@ export default function Converstions() {
     return (
         <section className="py-2 flex flex-col overflow-auto">
 
-            {conversations.map((conversation) => {
-                return <Converstion key={conversation._id} conversation={conversation} emogi={getRandomEmoji()} />
+            {conversations.map((conversation, idx) => {
+                return <Converstion key={conversation._id} conversation={conversation} emogi={getRandomEmoji()} lastIdx={idx === conversations.length - 1} />
             })}
 
             {loading ? <span className="loading loading-spinner mx-auto"></span> : null}

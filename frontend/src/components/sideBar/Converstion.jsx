@@ -1,14 +1,21 @@
-export default function Converstion({ conversation, emogi }) {
-    console.log(conversation)
+import useConverstion from "../../store/useConverstion"
+
+export default function Converstion({ conversation, emogi, lastIdx }) {
+    const { selectedConverstion, setSelectedConverstion } = useConverstion()
+
+    const isSelected = selectedConverstion?._id === conversation._id
+
     return (
         <section>
-            <div className='flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer'>
+            <div
+                className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-sky-600" : ""} transition-all`}
+                onClick={() => setSelectedConverstion(conversation)}>
 
 
                 <div className='avatar online'>
                     <div className='w-12 rounded-full'>
                         <img
-                            src='https://avatar.iran.liara.run/public/boy?username=boobi'
+                            src={conversation.image}
                             alt='user avatar'
                         />
                     </div>
@@ -17,7 +24,7 @@ export default function Converstion({ conversation, emogi }) {
                 <div className="flex flex-col flex-1">
                     <div className="flex gap-3 justify-between">
                         <p className="font-bold text-gray-200">
-                            username
+                            {conversation.username}
                         </p>
 
                         <span className="text-xl">
@@ -28,7 +35,7 @@ export default function Converstion({ conversation, emogi }) {
 
             </div>
 
-            <div className='divider my-0 py-0 h-1' />
+            {!lastIdx && <div className='divider my-0 py-0 h-1' />}
         </section>
     )
 }
