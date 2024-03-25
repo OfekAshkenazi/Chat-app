@@ -4,14 +4,23 @@ import io from "socket.io-client"
 export const SocketContext = createContext()
 
 export const SocketContextProvider = ({ children }) => {
+
     const [socket, setSocket] = useState(null)
     const [onlineUsers, setOnlineUsers] = useState([])
     const { loggedinUser } = useAuthContext()
 
     useEffect(() => {
         if (loggedinUser) {
-            const socket = io("http://localhost:5000")
+            const socket = io("http://localhost:5000", {
+                query:{
+                    userId: loggedinUser._id
+                }
+            })
             setSocket(socket)
+
+            socket.on("showOnlineUsers", (users) => {
+                setOnlineUsers(users)
+            } )
 
 
             return () => socket.close()
