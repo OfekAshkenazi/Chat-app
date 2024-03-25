@@ -35,7 +35,7 @@ export default function Signup() {
 
 
     return (
-        <section className="flex flex-col items-center justify-center min-w-96 mx-auto">
+        <section className="flex flex-col items-center justify-center min-w-80 mx-auto sm:min-w-96">
 
             <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
 
