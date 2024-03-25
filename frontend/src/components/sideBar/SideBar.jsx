@@ -1,5 +1,6 @@
-import Converstions from "./Converstions";
-import SearchInput from "./SearchInput";
+
+import SearchInput from './SearchInput';
+import Converstions from './Converstions';
 import LogoutBtn from './LogoutBtn';
 
 export default function SideBar() {

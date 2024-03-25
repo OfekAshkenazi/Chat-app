@@ -1,5 +1,5 @@
-import SideBar from "./SideBar";
-import MessageContainer from './MessageContainer';
+import MessageContainer from './chat/MessageContainer';
+import SideBar from './sideBar/SideBar';
 
 export default function Home() {
     return (

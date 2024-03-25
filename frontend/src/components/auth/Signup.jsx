@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
-import GenderBox from "./GenderBox";
 import { useState } from "react";
-import useSignUp from "../hooks/useSignUp";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+
+import GenderBox from "./GenderBox";
+import useSignup from './../../hooks/useSignUp';
 
 export default function Signup() {
 
@@ -14,7 +15,7 @@ export default function Signup() {
         gender: ''
     })
 
-    const { loading, signup } = useSignUp()
+    const { loading, signup } = useSignup()
 
     async function handleSubmit(e) {
         e.preventDefault()
