@@ -16,9 +16,10 @@ const useSignup = () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, username, password, confirmPassword, gender }),
-            });
+            })
 
             const data = await res.json()
+            
             if (data.error) {
                 throw new Error(data.error)
             }
@@ -37,7 +38,7 @@ export default useSignup
 
 function handleCredentialsErrors({ fullName, username, password, confirmPassword, gender }) {
     if (!fullName) {
-        toast.error('Please fill the full Name field')
+        toast.error('Please fill the full name field')
         return false
     }
     if (!username) {
