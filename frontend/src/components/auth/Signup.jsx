@@ -108,7 +108,11 @@ export default function Signup() {
 
 
                     <div>
-                        <button className="btn btn-block btn-sm mt-2">Sign up</button>
+                        <button
+                            disabled={loading}
+                            className="btn btn-block btn-sm mt-2">
+                            {loading ? <span className="loading loading-spinner"></span> : "Sign up"}
+                        </button>
                     </div>
 
 
