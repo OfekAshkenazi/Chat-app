@@ -9,7 +9,6 @@ export default function SearchInput() {
     const { setSelectedConverstion } = useConverstion()
     const { conversations } = useGetConversations()
 
-
     function handleSubmit(e) {
         e.preventDefault()
         if (!search) return

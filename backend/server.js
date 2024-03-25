@@ -7,10 +7,9 @@ import messageRoutes from "./api/message/message.routes.js"
 import userRoutes from "./api/user/user.routes.js"
 
 import connect from "./services/db.service.js"
+import { app, server } from "./services/socket.js"
 
-const app = express()
 dotenv.config()
-
 
 const PORT = process.env.PORT || 5000
 
@@ -22,7 +21,7 @@ app.use("/api/messages",messageRoutes)
 app.use("/api/users",userRoutes)
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connect()
     console.log(`server is running on port ${PORT}`)
 })
