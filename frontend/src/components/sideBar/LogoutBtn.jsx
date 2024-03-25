@@ -2,11 +2,17 @@ import { BiLogOut } from 'react-icons/bi'
 import useLogout from '../../hooks/useLogout'
 
 export default function LogoutBtn() {
-    const {logout} = useLogout()
+    const {loading, logout} = useLogout()
 
     return (
         <section className="mt-auto">
-            <BiLogOut onClick={logout} className='w-6 h-6 text-white cursor-pointer' />
+
+            {!loading ? (
+                <BiLogOut onClick={logout} className='w-6 h-6 text-white cursor-pointer' />
+
+            ) : (
+                <span className='loading loading-spinner'></span>
+            )}
         </section>
     )
 }

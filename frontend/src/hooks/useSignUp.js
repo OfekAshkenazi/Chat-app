@@ -29,7 +29,7 @@ const useSignup = () => {
 
             localStorage.setItem(STOARGE_KEY, JSON.stringify(data))
 
-            setLoogedinUser(data)
+            setLoggedinUser(data)
 
         } catch (error) {
             toast.error(error.message)
