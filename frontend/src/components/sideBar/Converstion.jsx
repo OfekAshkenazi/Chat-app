@@ -1,9 +1,13 @@
 import useConverstion from "../../store/useConverstion"
+import { useSocketContext } from "../../context/SocketContext"
 
 export default function Converstion({ conversation, emogi, lastIdx }) {
     const { selectedConverstion, setSelectedConverstion } = useConverstion()
 
     const isSelected = selectedConverstion?._id === conversation._id
+
+    const { onlineUsers } = useSocketContext()
+    const isOnline = onlineUsers.includes(conversation._id)
 
     return (
         <section>
@@ -12,7 +16,7 @@ export default function Converstion({ conversation, emogi, lastIdx }) {
                 onClick={() => setSelectedConverstion(conversation)}>
 
 
-                <div className='avatar online'>
+                <div className={`avatar ${isOnline ? 'online' : 'offline'}`}>
                     <div className='w-12 rounded-full'>
                         <img
                             src={conversation.image}
