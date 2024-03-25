@@ -11,6 +11,7 @@ export default function Message({ message }) {
     const chatClassName = fromMe ? 'chat-end' : 'chat-start'
     const profileImage = fromMe ? loggedinUser.image : selectedConverstion?.image
     const bubbleBgColor = fromMe ? 'bg-blue-500' : ''
+    const shakeClass = message.shouldShake ? "shake" : ""
 
     return (
         <section className={`chat ${chatClassName}`}>
@@ -20,7 +21,7 @@ export default function Message({ message }) {
                 </div>
             </div>
 
-            <div className={`chat-bubble text-white ${bubbleBgColor}`}>
+            <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass}`}>
                 {message.message}
             </div>
             <div className='chat-footer text-xs text-gray-900 font-bold flex gap-1 items-center'>{extractTime(message.createdAt)}</div>
