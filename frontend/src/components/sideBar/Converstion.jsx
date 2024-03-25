@@ -1,4 +1,5 @@
-export default function Converstion() {
+export default function Converstion({ conversation, emogi }) {
+    console.log(conversation)
     return (
         <section>
             <div className='flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer'>
@@ -18,9 +19,9 @@ export default function Converstion() {
                         <p className="font-bold text-gray-200">
                             username
                         </p>
-                        
+
                         <span className="text-xl">
-                            ⚽
+                            {emogi}
                         </span>
                     </div>
                 </div>
