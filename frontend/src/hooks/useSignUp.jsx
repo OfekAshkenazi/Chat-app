@@ -1,9 +1,12 @@
 import { useState } from "react"
 import toast from "react-hot-toast"
+import { useAuthContext } from "../context/AuthContext"
 
 
 const useSignup = () => {
+    const STOARGE_KEY = "credentials"
     const [loading, setLoading] = useState(false)
+    const { setLoogedinUser } = useAuthContext()
 
     const signup = async ({ fullName, username, password, confirmPassword, gender }) => {
         const success = handleCredentialsErrors({ fullName, username, password, confirmPassword, gender })
@@ -19,10 +22,14 @@ const useSignup = () => {
             })
 
             const data = await res.json()
-            
+
             if (data.error) {
                 throw new Error(data.error)
             }
+
+            localStorage.setItem(STOARGE_KEY, JSON.stringify(data))
+
+            setLoogedinUser(data)
 
         } catch (error) {
             toast.error(error.message)
