@@ -5,8 +5,9 @@ import generateTokenAndSetCookie from "../../services/generateToken.js"
 export async function signup(req, res) {
 
     try {
-        const { fullName, username, password, confirmPassword, gender } = req.body
+        const { fullName, username, password, confirmPassword, gender, image } = req.body
 
+        console.log(image)
 
         if (password !== confirmPassword) {
             return res.status(400).json({ error: "Passwords doesnt match" })
@@ -18,8 +19,8 @@ export async function signup(req, res) {
             return res.status(400).json({ error: "Username is allready exists" })
         }
 
-        const boyImage = `https://avatar.iran.liara.run/public/boy?username=${username}`
-        const girlImage = `https://avatar.iran.liara.run/public/girl?username=${username}`
+        const boyImage = image.length > 5 ? image : `https://avatar.iran.liara.run/public/boy?username=${username}`
+        const girlImage = image.length > 5 ? image : `https://avatar.iran.liara.run/public/girl?username=${username}`
 
         const salt = await bcrypt.genSalt(10)
 

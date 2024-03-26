@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import GenderBox from "./GenderBox";
 import useSignup from './../../hooks/useSignUp.js';
+import useUploadImg from "../../hooks/useUploadImg.js";
 
 export default function Signup() {
 
@@ -12,16 +13,20 @@ export default function Signup() {
         username: '',
         password: '',
         confirmPassword: '',
-        gender: ''
+        gender: '',
+        image: ''
     })
 
     const { loading, signup } = useSignup()
 
+    const { isUploading, uploadImg, imgData } = useUploadImg()
+
     async function handleSubmit(e) {
         e.preventDefault()
         try {
+            credentials.image = imgData.imgUrl
             await signup(credentials)
-            toast.success("sign up succsfuly")
+            toast.success("sign up successfully")
         } catch (error) {
             console.log(error)
         }
@@ -30,8 +35,6 @@ export default function Signup() {
     function handleCheckBox(gender) {
         setCredentials({ ...credentials, gender })
     }
-
-
 
 
     return (
@@ -43,6 +46,8 @@ export default function Signup() {
                     Sign up
                     <span className="text-blue-500"> ChatApp</span>
                 </h1>
+
+                <input type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
 
                 <form onSubmit={handleSubmit}>
 
