@@ -65,3 +65,12 @@ body {
         transform: translate3d(4px, 0, 0);
     }
 }
+
+.pulse {
+    animation: pulse 2s;
+}
+
+@keyframes pulse {
+    0%, 100% {transform: scale(1);}
+    50% {transform: scale(1.08);}
+  }
