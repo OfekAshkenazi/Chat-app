@@ -8,7 +8,7 @@ export default function LogoutBtn() {
         <section className="mt-auto">
 
             {!loading ? (
-                <BiLogOut onClick={logout} className='w-6 h-6 text-white cursor-pointer' />
+                <BiLogOut onClick={logout} className='w-6 h-6 text-white cursor-pointer' title="Logout" />
 
             ) : (
                 <span className='loading loading-spinner'></span>

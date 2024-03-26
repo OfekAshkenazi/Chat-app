@@ -1,15 +1,15 @@
 import { useAuthContext } from "../../context/AuthContext"
-import useConverstion from "../../store/useConverstion"
+import useConversation from "../../store/useConversation"
 import { extractTime } from "../../utils/extractTime"
 
 export default function Message({ message }) {
 
     const { loggedinUser } = useAuthContext()
-    const { selectedConverstion } = useConverstion()
+    const { selectedConversation } = useConversation()
 
     const fromMe = message.senderId === loggedinUser._id
     const chatClassName = fromMe ? 'chat-end' : 'chat-start'
-    const profileImage = fromMe ? loggedinUser.image : selectedConverstion?.image
+    const profileImage = fromMe ? loggedinUser.image : selectedConversation?.image
     const bubbleBgColor = fromMe ? 'bg-blue-500' : ''
     const shakeClass = message.shouldShake ? "shake" : ""
 

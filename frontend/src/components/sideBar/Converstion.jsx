@@ -1,10 +1,10 @@
-import useConverstion from "../../store/useConverstion"
+import useConversation from "../../store/useConversation"
 import { useSocketContext } from "../../context/SocketContext"
 
 export default function Converstion({ conversation, emogi, lastIdx }) {
-    const { selectedConverstion, setSelectedConverstion } = useConverstion()
+    const { selectedConversation, setSelectedConversation } = useConversation()
 
-    const isSelected = selectedConverstion?._id === conversation._id
+    const isSelected = selectedConversation?._id === conversation._id
 
     const { onlineUsers } = useSocketContext()
     const isOnline = onlineUsers.includes(conversation._id)
@@ -13,7 +13,7 @@ export default function Converstion({ conversation, emogi, lastIdx }) {
         <section>
             <div
                 className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-sky-600" : ""} transition-all`}
-                onClick={() => setSelectedConverstion(conversation)}>
+                onClick={() => setSelectedConversation(conversation)}>
 
 
                 <div className={`avatar ${isOnline ? 'online' : 'offline'}`}>
