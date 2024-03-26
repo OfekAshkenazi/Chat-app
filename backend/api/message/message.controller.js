@@ -4,45 +4,66 @@ import { getReceiverSocketId, io } from './../../services/socket.js';
 
 export async function sendMessage(req, res) {
     try {
-        const { message } = req.body
         const { id: receiverId } = req.params
         const senderId = req.user._id
 
-        // this will find a converstion where the participants array need to be inculde with all the array i provied { $all: [senderId, receiverId] }
-        let converstion = await Conversation.findOne({
+        let conversation = await Conversation.findOne({
             participants: { $all: [senderId, receiverId] }
         })
 
-        if (!converstion) {
-            converstion = await Conversation.create({
+        if (!conversation) {
+            conversation = await Conversation.create({
                 participants: [senderId, receiverId]
             })
         }
 
-        const newMessage = new Message({
-            senderId,
-            receiverId,
-            message,
-        })
+        const { message, image } = req.body
 
-        if (newMessage) {
-            converstion.messages.push(newMessage._id)
+        if (message) {
+            const newMessage = new Message({
+                senderId,
+                receiverId,
+                message,
+            })
+
+            conversation.messages.push(newMessage._id)
+
+            await Promise.all([conversation.save(), newMessage.save()])
+
+            const receiverSocketId = getReceiverSocketId(receiverId)
+
+            if (receiverSocketId) {
+                io.to(receiverSocketId).emit("newMessage", newMessage)
+            }
+
+            return res.status(201).json(newMessage)
         }
 
-        await Promise.all([converstion.save(), newMessage.save()])
+        if (image) {
+            const newMessage = new Message({
+                senderId,
+                receiverId,
+                image,
+            })
 
+            conversation.messages.push(newMessage._id)
 
-        // / socket functionality
-        const recevierSocketId = getReceiverSocketId(receiverId)
-        if (recevierSocketId) {
-            io.to(recevierSocketId).emit("newMessage", newMessage)
+            await Promise.all([conversation.save(), newMessage.save()])
+
+            const receiverSocketId = getReceiverSocketId(receiverId)
+
+            if (receiverSocketId) {
+                io.to(receiverSocketId).emit("newMessage", newMessage)
+            }
+
+            return res.status(201).json(newMessage)
         }
 
-        res.status(201).json(newMessage)
+        return res.status(400).json({ error: "Message or image is required" })
 
-    } catch(error) {
+    } catch (error) {
         console.log("Error in sendMessage controller", error.message)
-        res.status(500).json({ error: "Internal server Error" })
+        return res.status(500).json({ error: "Internal server Error" })
     }
 }
 
@@ -60,7 +81,7 @@ export async function getMessage(req, res) {
 
         res.status(200).json(conversation.messages)
 
-    } catch(error) {
+    } catch (error) {
         console.log("Error in getMessage controller", error.message)
         res.status(500).json({ error: "Internal server Error" })
     }

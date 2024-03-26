@@ -27,7 +27,6 @@ const useGetConversations = () => {
             setLoading(false)
         }
     }
-
     return {loading, conversations}
 
 

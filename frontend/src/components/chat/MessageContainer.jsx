@@ -26,6 +26,8 @@ export default function MessageContainer() {
         }
     }, [])
 
+    
+
     return (
         <section className={`${windowSize ? 'absolute top-0 right-0 z-10 bg-slate-600 w-full h-full overflow-y-auto flex flex-col' : 'sm:flex flex-col'} ${selectedConversation ? '' : 'hidden'}`}>
             {!selectedConversation && <MessageContainerNotActive />}

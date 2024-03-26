@@ -25,6 +25,7 @@ export default function Message({ message }) {
 
             <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass}`}>
                 {message.message}
+                {message.image && <img src={message.image} style={{ width: '150px' }} alt="image msg" /> }
             </div>
             <div className={`'chat-footer font-bold flex ${chatClassName === "chat-start" && "flex-row-reverse"} gap-1 items-center mt-1'`}>
                 <span className="text-xs text-gray-900">{extractTime(message.createdAt)}</span>
