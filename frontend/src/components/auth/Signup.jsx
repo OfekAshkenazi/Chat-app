@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import GenderBox from "./GenderBox";
 import useSignup from './../../hooks/useSignUp.js';
 import useUploadImg from "../../hooks/useUploadImg.js";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 
 export default function Signup() {
 
@@ -42,12 +43,37 @@ export default function Signup() {
 
             <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
 
-                <h1 className="text-3xl font-semibold text-center text-gray-300">
-                    Sign up
-                    <span className="text-blue-500"> ChatApp</span>
+                <h1 className=" flex justify-between items-center gap-2 text-3xl font-semibold text-gray-300">
+                    <div>
+                        Sign up
+                        <span className="text-blue-500"> ChatApp</span>
+                    </div>
+
+                    <div className="relative h-16 w-16 rounded-full overflow-hidden flex items-center justify-center">
+                        {imgData.imgUrl ? (
+                            <label htmlFor="imgUpload" className="absolute inset-0 cursor-pointer">
+                                <img
+                                    src={imgData.imgUrl}
+                                    alt="Uploaded"
+                                    className="w-full h-full object-cover"
+                                />
+                            </label>
+                        ) : (
+                            <label htmlFor="imgUpload" className="absolute inset-0 cursor-pointer flex items-center justify-center bg-slate-500" title="upload photo">
+                                <AiOutlineCloudUpload className="" />
+                            </label>
+                        )}
+                        <input
+                            hidden={true}
+                            type="file"
+                            className=""
+                            onChange={uploadImg}
+                            id="imgUpload"
+                        />
+                    </div>
+
                 </h1>
 
-                <input type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
 
                 <form onSubmit={handleSubmit}>
 
