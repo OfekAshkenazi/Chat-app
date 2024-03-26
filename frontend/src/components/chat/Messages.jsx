@@ -16,7 +16,7 @@ export default function Messages() {
     }, [messages])
 
     return (
-        <section className="px-4 flex-1 overflow-auto">
+        <section className='px-4 flex-1 overflow-auto'>
 
             {loading ? <MessageSkeleton /> : messages.map((message) => {
                 return (

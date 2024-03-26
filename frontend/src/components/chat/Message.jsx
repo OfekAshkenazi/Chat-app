@@ -24,8 +24,7 @@ export default function Message({ message }) {
             <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass}`}>
                 {message.message}
             </div>
-            <div className='chat-footer text-xs text-gray-900 font-bold flex gap-1 items-center'>{extractTime(message.createdAt)}</div>
-
+            <div className='chat-footer text-xs text-gray-900 font-bold flex gap-1 items-center mt-1'>{extractTime(message.createdAt)}</div>
 
         </section>
     )
