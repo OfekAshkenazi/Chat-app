@@ -2,6 +2,7 @@ import MessageContainer from './chat/MessageContainer';
 import SideBar from './sideBar/SideBar';
 
 export default function Home() {
+    
     return (
         <section
             className='flex h-[640px] sm:h-[550px] md:h-[550px] rounded-lg overflow-hidden
