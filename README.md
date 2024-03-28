@@ -37,7 +37,7 @@ Navigate to frontend directory and run npm i && npm run dev
 ![Home page](/frontend/src/assets/images/chat.png)
 
 ### Mobile view Home page and chat open. (login and signup pages are the same.)
-<img src="frontend/src/assets/images/homeMobile.png" width="100%" style="float: left"/><img src="frontend/src/assets/images/chatMobile.png" width="100%" style="float: left;"/>
+<img src="frontend/src/assets/images/homeMobile.png" width="100%" style="float: left"/><img src="frontend/src/assets/images/chatMobile.png" width="100%" style="float: right;"/>
 
 
 ## Authors
